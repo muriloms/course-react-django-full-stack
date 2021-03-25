@@ -10,3 +10,10 @@ python -m venv venv
 ``
 pip install Django
 ``
+
+
+- Create app
+
+``
+django-admin startproject nameProject nameDir
+``
