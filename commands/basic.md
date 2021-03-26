@@ -12,8 +12,15 @@ pip install Django
 ``
 
 
-- Create app
+- Create project
 
 ``
 django-admin startproject nameProject nameDir
+``
+
+
+- Create app
+
+``
+django-admin startapp appName
 ``
