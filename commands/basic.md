@@ -24,3 +24,10 @@ django-admin startproject nameProject nameDir
 ``
 django-admin startapp appName
 ``
+
+
+- Create superuser
+
+``
+python manage.py createsuperuser
+``
