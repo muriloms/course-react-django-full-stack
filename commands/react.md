@@ -14,3 +14,8 @@
 - Criar app
 
 ```npx create-react-app first-app```
+
+
+- Iniciar local server
+
+```npm start```
