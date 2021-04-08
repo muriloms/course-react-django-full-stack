@@ -1,21 +1,37 @@
 import React from 'react';
 import './App.css';
 
+import style from 'styled-components';
+
 import {Header} from './components/header';
 import Footer from './components/footer';
+import Numbers from './components/numbers';
 
+function ShowMessage(props)
+{
+  var text;
 
+  if(props.toShow)
+  {
+    text = <h2>My message</h2>
+  }
+  else
+  {
+    text = <h2>Forbidden</h2>
+  }
+
+  return text;
+}
+
+const Paragraph = style.p`
+  font-size: 2em;
+  color: green;
+`;
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Hello React
-        </p>
-        <Header info="This is my messagem" myNumber="6"/>
-        <Header info="Another info" myNumber="10"/>
-        <p>main content</p>
-        <Footer trademark="Create by Murilo"/>
+        <Numbers/>
       </header>
     </div>
   );

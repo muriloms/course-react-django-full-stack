@@ -4,10 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {Route, BrowserRouter} from 'react-router-dom';
+
+const context = React.createContext();
+export const CtxConsumer = context.Consumer;
+
+const animals = ['snake','elephant','lion'];
+
+const routing = (
+  <BrowserRouter>
+    <context.Provider value={{animals:animals}}>
+        <div>
+          <Route exact path='/' component={App}/>
+        </div>
+    </context.Provider>
+  </BrowserRouter>
+);
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  routing,
   document.getElementById('root')
 );
 

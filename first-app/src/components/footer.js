@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {CtxConsumer} from '../index'
+
 
 class Footer extends Component
 {
@@ -6,16 +8,35 @@ class Footer extends Component
     {
         alert('Hello. You clicked me');
     }
+
+    state = {
+        name: " ",
+        age: 31
+    }
+
+    componentDidMount()
+    {
+        this.setState({name:'Murilo'});
+    }
+
+    changed = evt => 
+    {
+        this.setState({name: evt.target.value});
+        //console.log(this.state.name);
+    }
     render()
     {
+        const animals = ['cat','dog','horse'];
         return (
-            <div>
-                <h2 onClick={this.createAlert}>
-                {this.props.trademark}
-                </h2>
-                <input type="text"/>
-            </div>
-            
+            <CtxConsumer>
+                {(context)=> {
+                    <div>
+                        {context.animals.map(animal=>{
+                            return <h1>{animal}</h1>
+                        })}
+                    </div>
+                }}
+            </CtxConsumer>
         )
         
     }
