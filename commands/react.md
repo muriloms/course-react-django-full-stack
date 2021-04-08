@@ -19,3 +19,7 @@
 - Iniciar local server
 
 ```npm start```
+
+- Router
+
+```npm install react-router-dom --save```
