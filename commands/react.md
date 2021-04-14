@@ -30,3 +30,8 @@
 https://styled-components.com/
 
 ```npm install --save styled-components```
+
+
+- React Cooks
+
+```npm install react-cookie```
