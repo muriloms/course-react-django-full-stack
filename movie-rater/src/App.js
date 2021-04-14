@@ -5,24 +5,33 @@ import MovieList from './components/movie-list';
 import MovieDetails from './components/movie-details';
 import MovieForm from './components/movie-form';
 
+import {useCookies} from 'react-cookie';
+
 function App() {
 
   const [movies, setMovie] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [editedMovie, setEditedMovie] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState('');
+  const [editedMovie, setEditedMovie] = useState('');
+
+  const [token] = useCookies(['mr-token']);
+
 
   useEffect(()=>{
     fetch("http://127.0.0.1:8000/api/movies/",{
       method: 'GET',
       headers:{
         'Content-Type': 'application/json',
-        'Authorization': 'Token e8a1ae2ff30f512b375ef2b32070e1b3430f66dd'
+        'Authorization': `Token ${token['mr-token']}`
       }
     })
     .then(resp=>resp.json())
     .then(resp=>setMovie(resp))
     .catch(error=>console.log(error))
   }, [])
+
+  useEffect(() => {
+    if(!token['mr-token']) window.location.href = '/';
+  }, [token])
 
   const loadMovie = movie =>{
     setSelectedMovie(movie);
@@ -55,6 +64,11 @@ function App() {
     setMovie(newMovie); 
   }
 
+  const removeClicked = movie => {
+    const newMoviews = movies.filter(mov => mov.id !== movie.id)
+    setMovie(newMoviews);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -62,7 +76,12 @@ function App() {
       </header>
       <div className="layout">
         <div>
-          <MovieList movies={movies} movieClicked={loadMovie} editClicked={editClicked}/>
+          <MovieList 
+            movies={movies} 
+            movieClicked={loadMovie} 
+            editClicked={editClicked}
+            removeClicked={removeClicked}  
+          />
           <button onClick={newMovie}>New movie</button>
         </div>
         
