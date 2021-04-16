@@ -26,36 +26,39 @@ function Auth()
         .catch(error => console.log(error));
     }
 
-
+    const isDisable = username.length === 0 || password.length ===0;
 
     return(
-        <div>
-            {isLoginView ? <h1>Login</h1> : <h1>Register</h1>}
-            <labe htmlFor="username">Username</labe><br/>
-            <input id="username" 
-                    type="text" 
-                    placeholder="username" 
-                    value={username}
-                    onChange={evt=> setUsername(evt.target.value)}
-            /><br/>
-            <label htmlFor="password">Passoword</label><br/>
-            <input id="password" 
-                        type="password" 
-                        placeholder="Password" 
-                        value={password}
-                        onChange={evt => setPassword(evt.target.value)}
-            /><br/>
-            {isLoginView? 
-                <button onClick={loginClick}>Login</button> :
-                <button onClick={registerClick}>Register</button> 
-            }
+        <div className="App">
+            <header className="App-header">
+                {isLoginView ? <h1>Login</h1> : <h1>Register</h1>}
+            </header>
+            <div className="login-container">
+                <labe htmlFor="username">Username</labe><br/>
+                <input id="username" 
+                        type="text" 
+                        placeholder="username" 
+                        value={username}
+                        onChange={evt=> setUsername(evt.target.value)}
+                /><br/>
+                <label htmlFor="password">Passoword</label><br/>
+                <input id="password" 
+                            type="password" 
+                            placeholder="Password" 
+                            value={password}
+                            onChange={evt => setPassword(evt.target.value)}
+                /><br/>
+                {isLoginView? 
+                    <button onClick={loginClick} disabled={isDisable}>Login</button> :
+                    <button onClick={registerClick} disabled={isDisable}>Register</button> 
+                }
+                
+                {isLoginView ?
+                    <p onClick={() => setIsLoginView(false)}>You don't have an account? Register here !</p>:
+                    <p onClick={() => setIsLoginView(true)}>You don't have an account? Login here !</p>
             
-            {isLoginView ?
-                <p onClick={() => setIsLoginView(false)}>You don't have an account? Register here !</p>:
-                <p onClick={() => setIsLoginView(true)}>You don't have an account? Login here !</p>
-           
-            }
-            
+                }
+            </div>
         </div>
     )
 }
