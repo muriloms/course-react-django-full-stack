@@ -2,13 +2,17 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+
 import Home from './components/Home';
+import Detail from './components/detail';
 
-export default function App() {
-  return (
-    <>
-      <Home msg="Hello my app"/>
-    </>
-  );
-}
+const AppNavigator = createStackNavigator({
+  Home: {screen: Home},
+  Detail:{screen: Detail}
+})
 
+const App = createAppContainer(AppNavigator);
+
+export default App;

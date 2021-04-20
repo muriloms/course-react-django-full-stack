@@ -1,14 +1,20 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, FlatList, Platform } from 'react-native';
 
 export default function Home(props) {
 
-    const [name, setName] = useState('Murilo');
+    const [name, setName] = useState('Murilo  Mazzotti Silvestrini');
 
     return (
         <View style={styles.home}>
             <Text>{props.msg}</Text>
-            <Text style={styles.name}>{name}</Text>
+            <Text>
+                {Platform.OS == "android" ? "I'm androd" : "I'm IOS"}
+            </Text>
+            <Button
+                title="Go to Details"
+                onPress={() => props.navigation.navigate('Detail')}
+            ></Button>
         </View>
     );
 }
@@ -17,13 +23,15 @@ const styles = StyleSheet.create(
     {
         home: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: Platform.OS == 'android' ?  '#fff' : '#00ff00',
         alignItems: 'center',
         justifyContent: 'center',
         },
-        name:{
+        text:{
             color: '#00ff00',
-            marginTop: 40,
+            marginTop: 10,
+            fontSize: 50,
+            textAlign: 'center',
         }
   });
   
